@@ -5,13 +5,15 @@
 // Login   <baudui_g@epitech.net>
 // 
 // Started on  Tue Jan 21 14:45:52 2014 geoffrey bauduin
-// Last update Sun Mar  2 15:03:07 2014 gautier lefebvre
+// Last update Sun Mar 30 14:56:13 2014 geoffrey bauduin
 //
 
 #include	"Factory/Factory.hpp"
 #include	"Factory/Kernel.hpp"
 #include	"Factory/Protocol.hpp"
-#include	"Factory/Network.hpp"
+#ifdef __SERVER__
+# include	"Factory/Network.hpp"
+#endif
 #include	"Factory/Game.hpp"
 #include	"Logger.hpp"
 #include	"Factory/Pool.hpp"
@@ -23,7 +25,7 @@ void	Factory::init(void) {
   Factory::Kernel::init();
   Factory::Game::init();
   Factory::Protocol::init();
-#ifndef CLIENT__
+#ifdef __SERVER__
   Factory::Network::init();
 #endif
   poolClock = new Pool< ::Clock>(100, 50, "Clock");
@@ -35,7 +37,7 @@ void	Factory::end(void) {
   Factory::Kernel::end();
   Factory::Game::end();
   Factory::Protocol::end();
-#ifndef CLIENT__
+#ifdef __SERVER__
   Factory::Network::end();
 #endif 
 }
