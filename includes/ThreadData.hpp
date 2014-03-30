@@ -5,14 +5,13 @@
 // Login   <geoffrey@epitech.net>
 // 
 // Started on  Mon Feb 24 17:53:55 2014 geoffrey bauduin
-// Last update Tue Feb 25 10:30:10 2014 geoffrey bauduin
+// Last update Sun Mar 30 14:43:55 2014 geoffrey bauduin
 //
 
 #ifndef THREADDATA_HPP_
 # define THREADDATA_HPP_
 
 #include	"Clock.hpp"
-#include	"Server/Event.hpp"
 
 enum	ThreadStatus {
   SLEEPING,
