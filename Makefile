@@ -5,10 +5,10 @@
 ## Login   <baudui_g@epitech.net>
 ## 
 ## Started on  Wed Feb  5 14:00:43 2014 geoffrey bauduin
-## Last update Sun Mar 30 14:58:16 2014 geoffrey bauduin
+## Last update Mon Mar 31 12:58:32 2014 geoffrey bauduin
 ##
 
-NAME=			common.a
+NAME=			hexatylaCommon.so
 
 SRCDIR=			src
 NETWORKDIR=		$(SRCDIR)/Network
@@ -115,18 +115,18 @@ OBJ=			$(SRC:.cpp=.o)
 
 DEPS=			$(OBJ:.o=.deps)
 
-LDFLAGS=		libs/libjson.a ##-lssl -lcrypto -lpthread
+LDFLAGS=		 -lssl -lcrypto -lpthread ##-Wl,-rpath,./libs/ -L./libs/ -ljson_linux-gcc-4.8_libmt.so
 
 INCLUDES=		-Iincludes/
 
-CXXFLAGS=		$(INCLUDES) -std=c++11 -Wall -Wextra
+CXXFLAGS=		$(INCLUDES) -std=c++11 -Wall -Wextra -fPIC -shared
 
 CXX=			g++
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		ar rc -o $(NAME) $(OBJ) $(LDFLAGS)
+		$(CXX) -o $(NAME) $(OBJ) $(LDFLAGS) -shared
 
 server:		CXXFLAGS += -D__SERVER__
 server:		all
