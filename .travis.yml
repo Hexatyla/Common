@@ -1,4 +1,12 @@
 language: cpp
-compiler:
-  - gcc
+compiler: gcc
 script: make test
+install:
+# libstdc++-4.8-dev
+    - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+# g++-4.8
+    - sudo apt-get -qq update
+    - sudo apt-get -qq install libstdc++-4.8-dev g++-4.8
+    - sudo update-alternatives --remove-all g++
+    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20
+    - sudo update-alternatives --config g++
