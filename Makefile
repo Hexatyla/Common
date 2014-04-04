@@ -5,7 +5,7 @@
 ## Login   <baudui_g@epitech.net>
 ## 
 ## Started on  Wed Feb  5 14:00:43 2014 geoffrey bauduin
-## Last update Mon Mar 31 12:58:32 2014 geoffrey bauduin
+## Last update Fri Apr  4 16:54:29 2014 geoffrey bauduin
 ##
 
 NAME=			hexatylaCommon.so
@@ -136,6 +136,9 @@ server:		all
 
 client:		CXXFLAGS += -DCLIENT__
 client:		all
+
+test:
+		true
 
 clean:
 		rm -f $(OBJ)
