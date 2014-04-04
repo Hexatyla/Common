@@ -23,3 +23,6 @@
 # Header dependencies
 
 *.deps
+
+# Test executable
+common_test
