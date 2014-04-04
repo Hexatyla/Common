@@ -5,7 +5,7 @@
 ## Login   <baudui_g@epitech.net>
 ## 
 ## Started on  Wed Feb  5 14:00:43 2014 geoffrey bauduin
-## Last update Fri Apr  4 16:54:29 2014 geoffrey bauduin
+## Last update Fri Apr  4 17:24:33 2014 geoffrey bauduin
 ##
 
 NAME=			hexatylaCommon.so
@@ -20,6 +20,9 @@ KERNELDIR=		$(SRCDIR)/Kernel
 PARSERDIR=		$(SRCDIR)/Parser
 ALGODIR=		$(SRCDIR)/Algo
 UTILSDIR=		$(SRCDIR)/Utils
+TESTDIR=		tests
+
+NAME_TEST=		common_test
 
 SRC_NETWORK=		$(NETWORKDIR)/Socket.cpp		\
 			$(NETWORKDIR)/SSocket.cpp		\
@@ -111,11 +114,16 @@ SRC=			$(SRC_NETWORK)				\
 			$(SRC_KERNEL)				\
 			$(SRC_ALGO)
 
+SRC_TEST=		$(TESTDIR)/main.cpp			\
+			$(SRC)
+
 OBJ=			$(SRC:.cpp=.o)
+
+OBJ_TEST=		$(SRC_TEST:.cpp=.o)
 
 DEPS=			$(OBJ:.o=.deps)
 
-LDFLAGS=		 -lssl -lcrypto -lpthread ##-Wl,-rpath,./libs/ -L./libs/ -ljson_linux-gcc-4.8_libmt.so
+LDFLAGS=		-lssl -lcrypto -lpthread
 
 INCLUDES=		-Iincludes/
 
@@ -137,14 +145,24 @@ server:		all
 client:		CXXFLAGS += -DCLIENT__
 client:		all
 
-test:
-		true
+test:		comp_test $(NAME_TEST)
+		./$(NAME_TEST)
+
+comp_test:
+		cd gtest-1.7.0/ && ./configure && $(MAKE) && cd -
+
+$(NAME_TEST):	CXXFLAGS += -Igtest-1.7.0/include/
+$(NAME_TEST):	LDFLAGS += ./libs/libjson.a -Wl,-rpath,./gtest-1.7.0/lib/.libs/ -L./gtest-1.7.0/lib/.libs/ -lgtest
+$(NAME_TEST):	$(OBJ_TEST)
+		$(CXX) -o $(NAME_TEST) $(OBJ_TEST) $(LDFLAGS)
 
 clean:
 		rm -f $(OBJ)
+		rm -f $(OBJ_TEST)
 
 fclean:		clean
 		rm -f $(NAME)
+		rm -f $(NAME_TEST)
 
 re:		hardclean all
 
