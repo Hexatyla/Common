@@ -5,7 +5,7 @@
 ## Login   <baudui_g@epitech.net>
 ## 
 ## Started on  Wed Feb  5 14:00:43 2014 geoffrey bauduin
-## Last update Fri Apr  4 17:40:40 2014 geoffrey bauduin
+## Last update Fri Apr  4 18:32:12 2014 geoffrey bauduin
 ##
 
 NAME=			hexatylaCommon.so
@@ -151,9 +151,7 @@ test:		comp_test $(NAME_TEST)
 		./$(NAME_TEST)
 
 comp_test:
-		cd gtest-1.7.0/
-		test -s Makefile || ( ./configure && $(MAKE) )
-		cd -
+		cd gtest-1.7.0/ && test -s Makefile || ( ./configure && $(MAKE) ) && cd -
 
 $(NAME_TEST):	CXXFLAGS += -Igtest-1.7.0/include/
 $(NAME_TEST):	LDFLAGS += ./libs/libjson.a -Wl,-rpath,./gtest-1.7.0/lib/.libs/ -L./gtest-1.7.0/lib/.libs/ -lgtest
