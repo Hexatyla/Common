@@ -5,7 +5,7 @@
 // Login   <geoffrey@epitech.net>
 // 
 // Started on  Fri Apr  4 17:37:21 2014 geoffrey bauduin
-// Last update Fri Apr  4 17:49:07 2014 geoffrey bauduin
+// Last update Sun Apr  6 15:47:47 2014 geoffrey bauduin
 //
 
 #include	"Clock.hpp"
@@ -25,4 +25,14 @@ TEST(Clock, testInitUpdate) {
   clock.update();
   EXPECT_NE(clock.getElapsedTime(), old);
   EXPECT_GT(clock.getElapsedTime() - old, 0.0005);
+}
+
+TEST(Clock, testElapsedTimeLastCall) {
+  Clock clock;
+  clock.init();
+  EXPECT_EQ(clock.getElapsedTimeSinceLastCall(), 0.0);
+  usleep(500);
+  double e = clock.getElapsedTimeSinceLastCall();
+  EXPECT_NE(e, 0.0);
+  EXPECT_GT(e, 0.0005);
 }
