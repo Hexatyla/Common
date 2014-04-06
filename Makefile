@@ -5,7 +5,7 @@
 ## Login   <baudui_g@epitech.net>
 ## 
 ## Started on  Wed Feb  5 14:00:43 2014 geoffrey bauduin
-## Last update Sun Apr  6 15:51:16 2014 geoffrey bauduin
+## Last update Sun Apr  6 15:57:26 2014 geoffrey bauduin
 ##
 
 NAME=			hexatylaCommon.so
@@ -118,6 +118,7 @@ SRC_TEST=		$(TESTDIR)/main.cpp			\
 			$(TESTDIR)/Algo/MD5.cpp			\
 			$(TESTDIR)/Clock.cpp			\
 			$(TESTDIR)/Converter.cpp		\
+			$(TESTDIR)/HasID.cpp			\
 			$(SRC)
 
 OBJ=			$(SRC:.cpp=.o)
